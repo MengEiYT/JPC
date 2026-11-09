@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "jpc",
+  "version": "${version}",
+  "name": "JPC (Java Personal Computer)",
+  "description": "JPC = Java Personal Computer. A computer block with a built-in x86 PC emulator that boots real ISO images inside Minecraft, no other app needed. Comes with KolibriOS.",
+  "authors": [
+    "MengEi"
+  ],
+  "contributors": [
+    "Claude (AI assistant by Anthropic): wrote much of the code together with MengEi",
+    "The original JPC emulator (the x86 PC inside this mod): Oxford University Subdepartment of Particle Physics, Ian Preston and others, GPL-2.0"
+  ],
+  "license": "GPL-2.0-only",
+  "icon": "assets/jpc/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.jpc.JpcMod"
+    ],
+    "client": [
+      "com.jpc.client.JpcModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,on=false": { "model": "jpc:block/computer" },
+    "facing=east,on=false":  { "model": "jpc:block/computer", "y": 90 },
+    "facing=south,on=false": { "model": "jpc:block/computer", "y": 180 },
+    "facing=west,on=false":  { "model": "jpc:block/computer", "y": 270 },
+    "facing=north,on=true":  { "model": "jpc:block/computer_on" },
+    "facing=east,on=true":   { "model": "jpc:block/computer_on", "y": 90 },
+    "facing=south,on=true":  { "model": "jpc:block/computer_on", "y": 180 },
+    "facing=west,on=true":   { "model": "jpc:block/computer_on", "y": 270 }
+  }
+}

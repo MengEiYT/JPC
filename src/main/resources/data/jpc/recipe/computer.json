@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "S": [
+      "minecraft:stone",
+      "minecraft:cobblestone",
+      "minecraft:cobbled_deepslate",
+      "minecraft:blackstone"
+    ],
+    "R": "minecraft:redstone",
+    "G": "minecraft:glass_pane"
+  },
+  "pattern": [
+    "SSS",
+    "SRS",
+    "SGS"
+  ],
+  "result": {
+    "id": "jpc:computer"
+  }
+}

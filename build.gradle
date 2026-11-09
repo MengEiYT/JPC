@@ -1,0 +1,74 @@
+plugins {
+	// Minecraft 26.1+ is unobfuscated, so this is the non-remapping Loom plugin id.
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.version
+group = project.group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Add repositories to retrieve artifacts from in here.
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"jpc" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	// No mappings line: 26.x ships with Mojang's names.
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// No modImplementation on unobfuscated versions.
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+def modVersion = project.version.toString()
+
+processResources {
+	inputs.property "version", modVersion
+
+	filesMatching("fabric.mod.json") {
+		expand "version": modVersion
+	}
+}
+
+// A note when the optional KolibriOS image is missing. Checked while the build is being set up (not inside a task),
+// because tasks must not touch the project while they run (configuration cache).
+if (!file("src/main/resources/jpc/bundled/kolibri.img").exists()) {
+	logger.lifecycle("JPC: KolibriOS is not bundled. Run tools/fetch_kolibri.sh before building to include it.")
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	repositories {
+	}
+}
